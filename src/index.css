@@ -1,13 +1,65 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Consolas", monospace;
+  color: #ddf;
+  background: #123;
+}
+
+h1 {
+  margin: 10px 20px;
+}
+
+h1 a {
+  text-decoration: none;
+  color: #faa;
+}
+
+aside {
+  float: left;
+  width: 200px;
+  height: 680px;
+  margin: 0 10px;
+}
+
+main {
+  margin: 10px;
+  display: grid;
+  grid-template: repeat(5, 120px) / repeat(5, 150px);
+  place-content: stretch stretch;
+  gap: 20px;
+}
+
+.drop-list, aside {
+  background: rgba(255, 255, 255, 5%);
+  overflow-y: auto;
+}
+
+.person {
+  background: 0;
+}
+
+nav {
+  text-align: center;
+}
+
+nav > :not(:last-child) {
+  margin-right: 10px;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: inherit;
+  
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 20%;
+  cursor: default;
 }

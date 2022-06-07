@@ -55,7 +55,7 @@ function App() {
             href="https://www.imt-atlantique.fr/fr/formation/ingenieur-par-apprentissage/ingenierie-logicielle">FIL</a> rouge
          </h1>
          <DragDropContext onDragEnd={onDragEnd}>
-            <aside>
+            <aside className="drop-list">
                <h2>Membres</h2>
                <Droppable droppableId="aside">
                   {prov => (

@@ -33,12 +33,24 @@ main {
   gap: 20px;
 }
 
-.drop-list, aside {
+.drop-list {
+  display: flex;
   background: rgba(255, 255, 255, 5%);
   overflow-y: auto;
+  flex-direction: column;
+}
+
+.drop-list > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+  /* Remplissage du contenant */
+  flex: 1;
 }
 
 .person {
+  display: inline-block;
   background: 0;
 }
 

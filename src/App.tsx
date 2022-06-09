@@ -5,6 +5,19 @@ import jsonData from "./data";
 import getFloors from "./models/getOffices";
 import Person from "./Person";
 import PersonData from "./models/PersonData";
+import {
+   AppBar,
+   BottomNavigation,
+   BottomNavigationAction,
+   Card,
+   CardContent,
+   CardHeader,
+   Grid,
+   Stack,
+   Toolbar,
+   Typography
+} from "@mui/material";
+import {ArrowBack, ArrowForward} from "@mui/icons-material";
 
 function App() {
    const [floors, setFloors] = useState(getFloors(jsonData));
@@ -15,7 +28,7 @@ function App() {
    const onDragEnd = useCallback((res: DropResult) => {
       let src = res.source!!,
          dest = res.destination!!;
-   
+      
       console.log(src, dest);
       
       if (src == null || dest == null)
@@ -50,34 +63,38 @@ function App() {
    }
    
    return (
-      <div>
-         <h1>Projet <a
-            href="https://www.imt-atlantique.fr/fr/formation/ingenieur-par-apprentissage/ingenierie-logicielle">FIL</a> rouge
-         </h1>
-         <DragDropContext onDragEnd={onDragEnd}>
-            <aside className="drop-list">
-               <h2>Membres</h2>
-               <Droppable droppableId="aside">
-                  {prov => (
-                     <div ref={prov.innerRef} {...prov.droppableProps}>
-                        {aside.map((pData, index) =>
-                           <Person data={pData} index={index} key={pData.fullName} />
-                        )}
-                        {prov.placeholder}
-                     </div>
-                  )}
-               </Droppable>
-            </aside>
-            <main>
-               {floors[floorId].offices.map(d => <Office data={d} key={d.name} />)}
-            </main>
-         </DragDropContext>
-         <nav>
-            <button disabled={floorId < 1} onClick={prevFloor}>←</button>
-            <span>{floors[floorId].name}</span>
-            <button disabled={floorId >= floors.length - 1} onClick={nextFloor}>→</button>
-         </nav>
-      </div>
+      <React.Fragment>
+         <AppBar position="static">
+            <Toolbar>
+               <Typography variant="h6">Projet FIL rouge</Typography>
+            </Toolbar>
+         </AppBar>
+         <Stack component="main" direction="row">
+            <DragDropContext onDragEnd={onDragEnd}>
+               <Card className="membres">
+                  <CardHeader title="Membres" />
+                  <Droppable droppableId="aside">
+                     {prov => (
+                        <CardContent ref={prov.innerRef} {...prov.droppableProps}>
+                           {aside.map((pData, index) =>
+                              <Person data={pData} index={index} key={pData.fullName} />
+                           )}
+                           {prov.placeholder}
+                        </CardContent>
+                     )}
+                  </Droppable>
+               </Card>
+               <Grid id="floor-layout" container>
+                  {floors[floorId].offices.map(d => <Office data={d} key={d.name} />)}
+               </Grid>
+            </DragDropContext>
+         </Stack>
+         <BottomNavigation showLabels>
+            <BottomNavigationAction disabled={floorId < 1} onClick={prevFloor} icon={<ArrowBack/>}/>
+            <BottomNavigationAction disabled={true} label={floors[floorId].name}/>
+            <BottomNavigationAction disabled={floorId >= floors.length - 1} onClick={nextFloor} icon={<ArrowForward/>}/>
+         </BottomNavigation>
+      </React.Fragment>
    );
 }
 

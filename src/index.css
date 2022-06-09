@@ -1,77 +1,40 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Consolas", monospace;
-  color: #ddf;
-  background: #123;
-}
-
-h1 {
-  margin: 10px 20px;
-}
-
-h1 a {
-  text-decoration: none;
-  color: #faa;
-}
-
-aside {
-  float: left;
-  width: 200px;
-  height: 680px;
-  margin: 0 10px;
-}
-
 main {
+  padding: 20px;
+}
+
+#floor-layout {
   margin: 10px;
   display: grid;
-  grid-template: repeat(5, 120px) / repeat(5, 150px);
+  grid-template: repeat(5, 160px) / repeat(5, 180px);
   place-content: stretch stretch;
   gap: 20px;
 }
 
-.drop-list {
-  display: flex;
-  background: rgba(255, 255, 255, 5%);
-  overflow-y: auto;
-  flex-direction: column;
+.membres {
+  width: 250px;
+  margin-right: 50px;
 }
 
-.drop-list > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  
-  /* Remplissage du contenant */
-  flex: 1;
+.membres .MuiCardContent-root {
+  height: 100%;
 }
 
-.person {
-  display: inline-block;
-  background: 0;
+.office {
+  width: 180px;
+  height: 160px;
 }
 
-nav {
-  text-align: center;
+.office .MuiCardHeader-root {
+  padding: 10px !important;
+  background: #1976d2;
+  color: white;
 }
 
-nav > :not(:last-child) {
-  margin-right: 10px;
+.office .MuiCardContent-root {
+  padding: 10px !important;
+  height: 100px;
 }
 
-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: inherit;
-  
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: 20%;
-  cursor: default;
+button:disabled svg {
+  opacity: 30%;
 }
